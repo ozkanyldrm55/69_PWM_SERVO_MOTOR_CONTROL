@@ -1,4 +1,4 @@
-/* motorun 3 ayrý konuma ceviren program */
+/* SG90 9G Servo Motor PWM ile 0 90 -90 dereceler arasinda surekli olarak dondermektedir. */
 
 #include "stm32f4xx.h"
 #include "stm32f4_discovery.h"
