@@ -1,4 +1,4 @@
-/* SG90 9G Servo Motor PWM ile 0 90 -90 dereceler arasinda surekli olarak dondermektedir. */
+/* SG90 9G Servo Motoru Pin_12 PWM ile 0 90 -90 dereceler arasinda surekli olarak dondermektedir. */
 
 #include "stm32f4xx.h"
 #include "stm32f4_discovery.h"
@@ -13,13 +13,10 @@ void GPIO_Config(void) {
 
 	// MODE AF olarak kullandigimiz icin AF ayarlarini yapmamiz gerekmektedir
 	GPIO_PinAFConfig(GPIOD,GPIO_PinSource12,GPIO_AF_TIM4);
-	GPIO_PinAFConfig(GPIOD,GPIO_PinSource13,GPIO_AF_TIM4);
-	GPIO_PinAFConfig(GPIOD,GPIO_PinSource14,GPIO_AF_TIM4);
-	GPIO_PinAFConfig(GPIOD,GPIO_PinSource15,GPIO_AF_TIM4);
 
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF; // timer olarak kullanildigi icin AF olarak kullandik.
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_12;
 	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
