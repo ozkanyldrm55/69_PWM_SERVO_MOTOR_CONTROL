@@ -52,7 +52,7 @@ void TIM_Config(void) {
 	   * -> PWM_Freq = Timer_Tick_Freq / (periyod + 1)  
 	 */
 
-	TIMOC_InitStruct.TIM_OCMode = TIM_OCMode_PWM1; 	// PWM mod1 mod2 muhabbeti , doluluk oranlarýyla ilgili
+	TIMOC_InitStruct.TIM_OCMode = TIM_OCMode_PWM1; 	// PWM mod1 mod2 muhabbeti , doluluk oranlariyla ilgili
 	TIMOC_InitStruct.TIM_OutputState = ENABLE;	// cikisi aktif ettik
 	TIMOC_InitStruct.TIM_OCPolarity = TIM_OCPolarity_High;
 }
@@ -66,18 +66,23 @@ int main(void) {
 	TIM_Config();
   while (1)
   {
+	  /* servo motor datashitinde pulse width 0.5 ms ise position + 90 derecede
+	  1.5 ms ise position 0 derecede
+	  2.5 ms ise position - 90 derecede*/
 	  TIMOC_InitStruct.TIM_Pulse = 500; // periyod 20ms oldugu icin  (0.5/20)*19999 = 500
 	  TIM_OC1Init(TIM4,&TIMOC_InitStruct);
 	  TIM_OC1PreloadConfig(TIM4,TIM_OCPreload_Enable);
 	  delay(21000000); // 8cycle*168000000 = 21000000 , 1sn demek
 
-	  TIMOC_InitStruct.TIM_Pulse = 1500; // (1,5/20)*19999 = 1500
+	  TIMOC_InitStruct.TIM_Pulse = 1500; // (1.5/20)*19999 = 1500
 	  TIM_OC1Init(TIM4,&TIMOC_InitStruct);
 	  TIM_OC1PreloadConfig(TIM4,TIM_OCPreload_Enable);
+	  delay(21000000);
 
-	  TIMOC_InitStruct.TIM_Pulse = 2500; // (2,5/20)*19999 = 2500
+	  TIMOC_InitStruct.TIM_Pulse = 2500; // (2.5/20)*19999 = 2500
 	  TIM_OC1Init(TIM4,&TIMOC_InitStruct);
 	  TIM_OC1PreloadConfig(TIM4,TIM_OCPreload_Enable);
+	  delay(21000000);
   }
 }
 
